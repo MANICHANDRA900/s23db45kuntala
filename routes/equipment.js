@@ -1,9 +1,6 @@
 var express = require('express');
+const equipment_controlers= require('../controllers/equipment');
 var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('equipment', { title: 'Search Results equipment' });
-});
-
+/* GET costumes */
+router.get('/', equipment_controlers.equipment_view_all_Page );
 module.exports = router;

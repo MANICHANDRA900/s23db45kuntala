@@ -4,5 +4,4 @@ equipment_type: String,
 condition: String,
 quantity: Number
 })
-module.exports = mongoose.model("Equipment",
-equipmentSchema)
+module.exports = mongoose.model("equipment",equipmentSchema)

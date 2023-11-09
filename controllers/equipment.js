@@ -22,8 +22,20 @@ exports.equipment_update_put = function(req, res) {
 // List of all Equipments
 exports.equipment_list = async function(req, res) {
     try{
-    theEquipments = await Equipment.find();
-    res.send(theEquipments);
+    Equipment = await Equipment.find();
+    res.send(Equipment);
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+   };
+// VIEWS
+// Handle a show all view
+exports.equipment_view_all_Page = async function(req, res) {
+    try{
+        Equipment = await Equipment.find();
+    res.render('equipments', { title: 'Equipment Search Results', results: Equipment });
     }
     catch(err){
     res.status(500);
