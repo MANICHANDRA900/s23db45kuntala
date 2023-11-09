@@ -5,8 +5,8 @@ block content
   - const items = results;
   .container-fluid
     .row
-      each equipment,index in items
-        div(class="col-sm-2" onclick=buy(${index}))
+      each equipment in items
+        div(class="col-sm-2" )
           h3 #{equipment.equipment_type}
           p Model: #{equipment.condition}
           p Price: $#{equipment.quantity}

@@ -4,7 +4,7 @@ This repository contains the source code for the [f23wb45kuntala] project
 
 ## Classes and Attributes
 
-### Class: Equipment
+### Class: equipment
 - **equipmentType (string)**: Represents the type or category of the equipment.
 - **quantity (number)**: Indicates the available quantity of the equipment.
 - **condition (string)**: Describes the condition of the equipment.
