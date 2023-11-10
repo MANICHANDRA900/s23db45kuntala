@@ -32,8 +32,8 @@ exports.equipment_update_put = async function(req, res) {
     // Do updates of properties
     if(req.body.equipment_type)
     toUpdate.equipment_type = req.body.equipment_type;
-    if(req.body.condition) toUpdate.cost = req.body.condition;
-    if(req.body.quantity) toUpdate.size = req.body.quantity;
+    if(req.body.condition) toUpdate.condition = req.body.condition;
+    if(req.body.quantity) toUpdate.quantity = req.body.quantity;
     let result = await toUpdate.save();
     console.log("Sucess " + result)
     res.send(result)
