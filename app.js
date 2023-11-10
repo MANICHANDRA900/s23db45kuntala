@@ -22,22 +22,19 @@ var Equipment = require("./models/equipment");
 async function recreateDB(){
  // Delete everything
  await Equipment.deleteMany();
- let instance1 = new
-Equipment({equipment_type:"Treadmill",condition:"Brand New",quantity:10});
+ let instance1 = new Equipment({equipment_type:"Treadmill",condition:"Brand New",quantity:10});
  instance1.save().then(doc=>{
  console.log("First object saved")}
  ).catch(err=>{
  console.error(err)
  });
- let instance2 = new
-Equipment({equipment_type:"Dumbbells",condition:"Slightly Used",quantity:25});
+ let instance2 = new Equipment({equipment_type:"Dumbbells",condition:"Slightly Used",quantity:25});
  instance2.save().then(doc=>{
  console.log("Second object saved")}
  ).catch(err=>{
  console.error(err)
  });
- let instance3 = new
- Equipment({equipment_type:"Exercise Bike",condition:"Refurbished",quantity:15});
+ let instance3 = new Equipment({equipment_type:"Exercise Bike",condition:"Refurbished",quantity:15});
  instance3.save().then(doc=>{
  console.log("Third object saved")}
  ).catch(err=>{

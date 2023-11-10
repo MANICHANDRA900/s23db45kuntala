@@ -4,9 +4,17 @@ exports.equipment_list = function(req, res) {
  res.send('NOT IMPLEMENTED: Equipment list');
 };
 // for a specific Equipment.
-exports.equipment_detail = function(req, res) {
- res.send('NOT IMPLEMENTED: Equipment detail: ' + req.params.id);
-};
+exports.equipment_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await equipment.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+    };
+    
 // Handle Equipment create on POST.
 exports.equipment_create_post = function(req, res) {
  res.send('NOT IMPLEMENTED: Equipment create POST');
@@ -16,9 +24,25 @@ exports.equipment_delete = function(req, res) {
  res.send('NOT IMPLEMENTED: Equipment delete DELETE ' + req.params.id);
 };
 // Handle Equipment update form on PUT.
-exports.equipment_update_put = function(req, res) {
- res.send('NOT IMPLEMENTED: Equipment update PUT' + req.params.id);
-};
+exports.equipment_update_put = async function(req, res) {
+    console.log(`update on id ${req.params.id} with body
+    ${JSON.stringify(req.body)}`)
+    try {
+    let toUpdate = await equipment.findById( req.params.id)
+    // Do updates of properties
+    if(req.body.equipment_type)
+    toUpdate.equipment_type = req.body.equipment_type;
+    if(req.body.condition) toUpdate.cost = req.body.condition;
+    if(req.body.quantity) toUpdate.size = req.body.quantity;
+    let result = await toUpdate.save();
+    console.log("Sucess " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": ${err}: Update for id ${req.params.id}
+    failed`);
+    }
+    };
 // List of all Equipments
 exports.equipment_list = async function(req, res) {
     try{
