@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  h1= title
+  form(id='equipmentForm', action="/resource/equipment", method="POST")
+    div.form-group
+      label.equipmentAttr(for='equipment_type') equipment type
+      input#equipment_type(type='text', name='equipment_type')
+
+    div.form-group
+      label.equipmentAttr(for='condition') equipment condition
+      input#condition(type='text', name='condition')
+
+    div.form-group
+      label.equipmentAttr(for='quantity') equipment quantity
+      input#quantity(type='number', name='quantity')
+
+    input(type="submit")
+
+  script.
+    document.forms['equipmentForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Save succeeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Save failed " + error )
+      });
+    });

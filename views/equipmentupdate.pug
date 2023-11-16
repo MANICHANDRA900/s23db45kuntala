@@ -1,0 +1,48 @@
+extends layout
+
+block content
+  h1= title
+
+  - let equipmentid = toShow._id
+  - let equipment_type = toShow.equipment_type
+  - let condition = toShow.condition
+  - let quantity = toShow.quantity
+
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{equipmentid}
+
+  - let actionid = "/resource/equipment/" + equipmentid
+
+  form(id='equipmentForm', action= actionid, method="PUT")
+    div.form-group
+      label.equipmentAttr(for='equipment_type') equipment type
+      input#equipment_type(type='text', name='equipment_type', value= equipment_type)
+
+    div.form-group
+      label.equipmentAttr(for='size') equipment size
+      input#size(type='text', name='condition', value= condition)
+
+    div.form-group
+      label.equipmentAttr(for='cost') equipment quantity
+      input#cost(type='number', name='quantity', value= quantity)
+
+    input(type="submit")
+
+  script.
+    document.forms['equipmentForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that the form is being submitted
+      fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Update succeeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Update failed " + error)
+      });
+    });
