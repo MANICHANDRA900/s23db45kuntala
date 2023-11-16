@@ -1,0 +1,60 @@
+extends layout
+
+block content
+  h1= title
+
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let equipmentid = toShow._id
+    - let equipment_type = toShow.equipment_type
+    - let condition = toShow.condition
+    - let quantity = toShow.quantity
+    - let actionid = "/resource/equipment/" + equipmentid
+
+    script.
+      let actionid = "#{actionid}"
+
+    div
+      div.row
+        div(class='equipmentAttr mr-3') equipment ID is:
+          div #{equipmentid}
+
+      div.row
+        div(class='equipmentAttr mr-3') equipment Type is:
+          div #{equipment_type}
+
+      div.row
+        div(class='equipmentAttr mr-3') equipment condition is:
+          div #{condition}
+
+      div.row
+        div(class='equipmentAttr mr-3') equipment quantity is:
+          div #{quantity}
+
+      button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+      button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+
+    script.
+      function cancel() {
+        // Go back to the home page for the equipment collection
+        window.location.href='/equipment'
+      }
+
+    script.
+      function deleteOnid() {
+        console.log("starting delete")
+        // delete first
+        fetch(actionid, {
+          method: 'DELETE' // Don't need a body for the delete
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Delete succeeded")
+          window.location.href='/equipment'
+          // TODO handle body
+        }).catch((error) => {
+          // TODO handle error
+          alert("Delete failed " + error)
+        });
+      }

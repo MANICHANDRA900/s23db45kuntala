@@ -143,4 +143,18 @@ exports.equipment_update_Page = async function(req, res) {
     res.send(`{'error': '${err}'}`);
     }
    };
+
+   // Handle a delete one view with id from query
+exports.equipment_delete_Page = async function(req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try{
+    result = await equipment.findById(req.query.id)
+    res.render('equipmentdelete', { title: 'equipment Delete', toShow: 
+   result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+   };
    

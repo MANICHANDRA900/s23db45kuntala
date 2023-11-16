@@ -9,4 +9,6 @@ router.get('/detail', equipment_controlers.equipment_view_one_Page);
 router.get('/create', equipment_controlers.equipment_create_Page);
 /* GET create update page */
 router.get('/update', equipment_controlers.equipment_update_Page);
+/* GET delete costume page */
+router.get('/delete', equipment_controlers.equipment_delete_Page);
 module.exports = router;
