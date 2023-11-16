@@ -1,0 +1,20 @@
+extends layout
+block content
+ h1= title
+ - let equipmentid = toShow._id
+ - let equipment_type = toShow.equipment_type
+ - let condition = toShow.condition
+ - let quantity = toShow.quantity
+ div
+ div.row
+ div(class='equipmentAttr mr-3') equipment ID is:
+ div #{equipmentid}
+ div.row
+ div(class='equipmentAttr mr-3') equipment Type is:
+ div #{equipment_type}
+ div.row
+ div(class='equipmentAttr mr-3') equipment condition is:
+ div #{condition}
+ div.row
+ div(class='equipmentAttr mr-3') equipment quantity is:
+ div #{quantity}
