@@ -1,17 +1,17 @@
 extends layout
-
+ 
 block content
   h1= title
-  - const items = results;
-  .container-fluid
-    .row
-      each equipment in items
-        div(class="col-sm-2" )
-          h3 #{equipment.equipment_type}
-          p Model: #{equipment.condition}
-          p Price: $#{equipment.quantity}
-  
+  - let equipment = results;
+  div(class="container-fluid")
+    div(class="row m-1")
+      each item in equipment
+        - let destination = `dispatch("/equipment/update?id=${item._id}")`
+        div(class="row-sm-2 m-1")
+          | Equipment with type #{item.equipment_type} and its condition is (#{item.condition}) and qunatity is #{item.quantity}
+          button.btn(class="btn-primary ml-1", onclick= destination) Update
+ 
   script.
-    function buy(index) {
-        alert(You purchased : ${index})
+    function dispatch(path){
+      window.location.href = path;
     }
