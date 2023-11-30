@@ -20,7 +20,7 @@ const secured = (req, res, next) => {
  res.redirect("/login");
  }
  /* GET update costume page */
-router.get('/update', secured,
+router.get('/update',
 equipment_controlers.equipment_update_Page);
 router.post('/login',passport.authenticate('local'), function(req, res) {
     res.redirect('/');

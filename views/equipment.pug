@@ -1,17 +1,27 @@
 extends layout
- 
+
 block content
   h1= title
-  - let equipment = results;
-  div(class="container-fluid")
-    div(class="row m-1")
-      each item in equipment
-        - let destination = `dispatch("/equipment/update?id=${item._id}")`
-        div(class="row-sm-2 m-1")
-          | Equipment with type #{item.equipment_type} and its condition is (#{item.condition}) and qunatity is #{item.quantity}
-          button.btn(class="btn-primary ml-1", onclick= destination) Update
- 
+
+  a.btn.btn-primary(href="/equipment/create") Create Motor
+
+  - let items = results;
+  each item in items
+    - let updateDestination = `dispatch("/equipment/update?id=${item._id}")`
+    - let detailDestination = `dispatch("/equipment/detail?id=${item._id}")`
+    - let deleteDestination = `dispatch("/equipment/delete?id=${item._id}")`
+
+    div
+      p equipment_type - #{item.equipment_type}
+      p condition - #{item.condition}
+      p quantity - #{item.quantity}
+      button.btn.btn-primary.ml-1(onclick=updateDestination) Update
+      button.btn.btn-secondary.ml-1(onclick=detailDestination) Detail
+      button.btn.btn-danger.ml-1(onclick=deleteDestination) Delete
+      br
+      br
+
   script.
     function dispatch(path){
-      window.location.href = path;
+      window.location.href=path;
     }
